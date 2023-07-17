@@ -1,0 +1,7 @@
+About GitHub for enterprises:
+    * The main difference between the products is that GitHub Enterprise Cloud is hosted by GitHub, 
+        while GitHub Enterprise Server is self-hosted.
+    There are some helpful links below for comparison:
+        - https://docs.github.com/en/get-started/onboarding/getting-started-with-github-enterprise-cloud# (Official Github Document)
+        - https://stackshare.io/stackups/github-vs-github-enterprise
+        - https://medium.com/@itmethods/3-reasons-why-your-organization-needs-github-enterprise-and-how-you-can-enjoy-it-as-saas-dc5476e5f3c6
