@@ -20,3 +20,6 @@ Each runner can run a single job at a time.
 
 GitHub provides Ubuntu Linux, Microsoft Windows, and macOS runners to run your workflows; each workflow run executes in a fresh, newly-provisioned virtual machine.
 
+To change/adjust Github Action settings, you need to go to Settings tab in Github Repository, and select Actions on the left.
+    After that, you can Allow/Disable/... Actions. (ActionSettings.png)
+
