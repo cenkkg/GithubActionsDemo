@@ -1,4 +1,4 @@
 These are some helpful links to understand Github Actions:
     - https://www.youtube.com/watch?v=TLB5MY9BBa4 (Really good 1,5 hours tutorial)
     - https://docs.github.com/en/actions/learn-github-actions (Official Github Actions Documents)
-    - https://www.youtube.com/watch?app=desktop&v=y4BKdLjKEvs (Self-Hostet GithubActions in Kubernetes)
+    - https://www.youtube.com/watch?v=lD0t-UgKfEo (Self-Hostet GithubActions in Kubernetes)
