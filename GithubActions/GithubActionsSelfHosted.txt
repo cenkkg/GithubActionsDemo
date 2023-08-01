@@ -1,0 +1,6 @@
+Step 1:
+    - Install cert-manager on a Kubernetes cluster
+        By default, actions-runner-controller uses cert-manager for certificate management of admission webhook.
+        So we have to make sure cert-manager is installed on Kubernetes before we install actions-runner-controller. 
+
+    
