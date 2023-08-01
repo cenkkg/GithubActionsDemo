@@ -1,0 +1,52 @@
+Step 1:
+    - Create Kubernetes Cluster in Azure (AKS)
+        You can enable "Enable virtual nodes" option to extend your AKS cluster's capacity by offloading specific workloads to ACI
+
+STEP 2:
+    - Generate new token in Github
+        Just 'repo' access is enough.
+
+STEP 3:
+    - Test Kubectl is connected to AKS or not.
+        "kubectl get pods"
+
+Step 4:
+    - Install cert-manager on a Kubernetes cluster
+        By default, actions-runner-controller uses cert-manager for certificate management of admission webhook.
+        So we have to make sure cert-manager is installed on Kubernetes before we install actions-runner-controller. 
+
+        -- Without Helm:
+            "kubectl create namespace cert-manager"
+            "kubectl apply -f https://github.com/jetstack/cert-manager/releases/latest/download/cert-manager.crds.yaml"
+
+        -- With Helm:
+            "helm repo add jetstack https://charts.jetstack.io"
+            "helm repo update"
+            "helm install cert-manager jetstack/cert-manager --namespace cert-manager --version <chart_version>"
+
+        Finally, you can check installation:
+            "kubectl get pods -n cert-manager"
+
+STEP 5:
+    - Install actions runner controller
+        Before installing actions-runner-controller, you can add token (from STEP 2) as secret in kubernetes cluster.
+            "kubectl create ns actions-runner-system"
+            "kubectl create secret generic controller-manager -n actions-runner-system 
+                    --from-literal=github_token=<GitHub Token>"
+
+        Afterwards, install actions runner controller:
+            "helm repo add actions-runner-controller https://actions-runner-controller.github.io/actions-runner-controller"
+            "helm repo update"
+            "helm upgrade --install --namespace actions-runner-system 
+                --create-namespace --wait actions-runner-controller 
+                actions-runner-controller/actions-runner-controller --set 
+                syncPeriod=1m"
+
+        Verify that the action-runner-controller is installed properly using the below command:
+            "kubectl get all -n actions-runner-system"
+            or
+            "kubectl get runners -n actions-runner-system"
+
+STEP 6:
+    - Create Runner (Repository Runner) in Kubernetes Cluster
+        Apply SelfHostedDeployment.yaml to Kubernetes Cluster with "kubectl apply..."
