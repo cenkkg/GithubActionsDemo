@@ -49,4 +49,9 @@ STEP 5:
 
 STEP 6:
     - Create Runner (Repository Runner) in Kubernetes Cluster
-        Apply SelfHostedDeployment.yaml to Kubernetes Cluster with "kubectl apply..."
+        Apply SelfHostedDeployment.yaml to Kubernetes Cluster with "kubectl create -f SelfHostedDeployment.yaml"
+
+STEP 7:
+    - Check runners 
+        "kubectl get pod -n actions-runner-system | grep -i "k8s-action-runner""
+        You can also see runner in "Settings > Actions > Runner" in GitHub.

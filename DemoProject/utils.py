@@ -63,9 +63,6 @@ def save_search_history(city, date, time):
         json.dump(data, file, indent=4)
 
     
-
-
-
 def is_url_up(url):
     try:
         r = requests.head(url)
