@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    name: Unit Tests
+    name: Selenium Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -41,8 +41,8 @@ jobs:
 
       - name: Run tests
         run: |
-          cd tests
-          xvfb-run python -m unittest submit_test.py
+          cd DemoProject/tests
+          xvfb-run python -m unittest selenium_check_city.py
         env:
           CHROME_BIN: ${{ steps.setup-chrome.outputs.executablePath }}
 
