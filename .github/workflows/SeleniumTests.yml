@@ -36,8 +36,8 @@ jobs:
       - name: Start application
         run: |
           cd DemoProject
-          python app.py &
-          sleep 3  # give the application some time to start
+          python main.py &
+          sleep 2  # give the application some time to start
 
       - name: Run tests
         run: |
