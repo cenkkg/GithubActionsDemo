@@ -1,0 +1,50 @@
+name: Python Unit Tests With GitHub Packets
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Python and pip
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip
+          pip3 install --upgrade pip
+        shell: bash
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install -r DemoProject/requirements.txt
+
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@latest
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y xvfb
+          python -m pip install --upgrade pip
+
+      - name: Start application
+        run: |
+          cd DemoProject
+          python app.py &
+          sleep 3  # give the application some time to start
+
+      - name: Run tests
+        run: |
+          cd tests
+          xvfb-run python -m unittest submit_test.py
+        env:
+          CHROME_BIN: ${{ steps.setup-chrome.outputs.executablePath }}
+
+
+
