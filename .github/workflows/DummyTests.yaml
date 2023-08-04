@@ -1,0 +1,16 @@
+name: Python Unit Tests With GitHub Packets
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dummy GitHub Actions Test
+        run: |
+          echo "Dummy Test"
+        shell: bash
