@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    name: Unit Tests
+    name: Selenium Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -25,9 +25,26 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install -r DemoProject/requirements.txt
 
-      - name: Run unit tests
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@latest
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y xvfb
+          python -m pip install --upgrade pip
+
+      - name: Start application
+        run: |
+          cd DemoProject
+          python main.py &
+          sleep 2  # give the application some time to start
+
+      - name: Run tests
         run: |
           cd DemoProject/tests
-          python3 test_runner.py
+          xvfb-run python -m unittest selenium_check_city.py
+        env:
+          CHROME_BIN: ${{ steps.setup-chrome.outputs.executablePath }}
+
 
 

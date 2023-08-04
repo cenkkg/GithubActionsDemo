@@ -24,7 +24,7 @@
         {%if empty%}
         <label class="err">Ops, no such city exists man!</label>
         {%endif%}
-        <h1 class="country">{{day['name']}}, {{day['sys']['country']}}</h1>
+        <h1 id="country">{{day['name']}}, {{day['sys']['country']}}</h1>
         <span class="date">{{date}}</span>
         <h1 class="temp">{{day['main']['temp']}}ºC</h1>   
         <span class="status">{{day['weather'][0]['description']}}</span>
