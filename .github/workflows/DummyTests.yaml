@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     name: Unit Tests
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Dummy GitHub Actions Test
         run: |
