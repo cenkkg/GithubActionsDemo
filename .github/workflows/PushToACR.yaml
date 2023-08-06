@@ -1,0 +1,44 @@
+name: Build and Push to ACR
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    name: Unit Tests
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Python and pip
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip
+          pip3 install --upgrade pip
+        shell: bash
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install -r DemoProject/requirements.txt
+
+      - name: Run unit tests
+        run: |
+          cd DemoProject/tests
+          python3 test_runner.py
+
+      - name: Log in to Azure
+        run: |
+          az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+          az acr login --name YOUR_ACR_NAME
+        env:
+          AZURE_CLI_DISABLE_CONNECTION_VERIFICATION: 1
+
+      - name: Build and push Docker image
+        run: |
+          # Replace the following with your Dockerfile path and desired image name and tag
+          docker build -t YOUR_ACR_NAME.azurecr.io/your-image-name:latest .
+          docker push YOUR_ACR_NAME.azurecr.io/your-image-name:latest
+
+
