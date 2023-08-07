@@ -38,6 +38,6 @@ jobs:
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
-          SONAR_TOKEN: "squ_1f0b6187f396de4362881a005a003657a58300b1"
+          SONAR_TOKEN: "GithubActionsDemoHandling"
           SONAR_HOST_URL: "http://sonarqube-service.actions-runner-system.svc.cluster.local:9000"
 
