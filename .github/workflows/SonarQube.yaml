@@ -44,7 +44,7 @@ jobs:
       - name: Run SonarQube Scanner
         run: |
           ./sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner \
-            -Dsonar.projectKey=your_project_key \
+            -Dsonar.projectKey=GithubActionsDemo \
             -Dsonar.host.url=http://sonarqube-service.actions-runner-system.svc.cluster.local:9000 \
-            -Dsonar.login=GithubActionsDemoHandling
+            -Dsonar.login=squ_a444fa29639c55342c20d17753ea528b2d606d58
 
