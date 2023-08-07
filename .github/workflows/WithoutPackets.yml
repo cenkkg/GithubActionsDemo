@@ -1,4 +1,4 @@
-name: Python Unit Tests With GitHub Packets
+name: Python Unit Tests Without GitHub Packets
 on:
   push:
     branches: [ "main" ]

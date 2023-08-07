@@ -1,4 +1,4 @@
-name: Python Unit Tests With GitHub Packets
+name: Selenium Tests
 on:
   push:
     branches: [ "main" ]
