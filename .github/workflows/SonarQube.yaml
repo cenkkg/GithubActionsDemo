@@ -39,5 +39,5 @@ jobs:
         uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: "sonar.allowPermissionManagementForProjectAdmins"
-          SONAR_HOST_URL: "http://sonarqube-service.default.svc.cluster.local"
+          SONAR_HOST_URL: "http://sonarqube-service.actions-runner-system.svc.cluster.local:9000"
 
