@@ -1,4 +1,4 @@
-name: Build
+name: SonarQube Test
 on:
   push:
     branches: [ "main" ]
@@ -34,16 +34,10 @@ jobs:
         run: |
           cd DemoProject/tests
           python3 test_runner.py
-
+          
       - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: sonar.allowPermissionManagementForProjectAdmins
-          SONAR_PROJECT_KEY: GithubActionsDemo
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-            -Dsonar.sources=. \
-            -Dsonar.language=python \
-            -Dsonar.host.url=http://sonarqube-service.default.svc.cluster.local \
-            -Dsonar.login=${SONAR_TOKEN}
+          SONAR_HOST_URL: http://sonarqube-service.default.svc.cluster.local
 
