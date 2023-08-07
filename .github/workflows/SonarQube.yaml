@@ -35,9 +35,16 @@ jobs:
           cd DemoProject/tests
           python3 test_runner.py
 
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: "GithubActionsDemoHandling"
-          SONAR_HOST_URL: "http://sonarqube-service.actions-runner-system.svc.cluster.local:9000"
+      - name: Install SonarScanner CLI
+        run: |
+          curl -L -o sonar-scanner-cli.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+          unzip sonar-scanner-cli.zip
+          rm sonar-scanner-cli.zip
+
+      - name: Run SonarQube Scanner
+        run: |
+          ./sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner \
+            -Dsonar.projectKey=your_project_key \
+            -Dsonar.host.url=http://sonarqube-service.actions-runner-system.svc.cluster.local:9000 \
+            -Dsonar.login=GithubActionsDemoHandling
 
