@@ -1,4 +1,4 @@
-name: Python Unit Tests Without GitHub Packets
+name: Build
 on:
   push:
     branches: [ "main" ]
@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    name: Unit Tests
+    name: Build
     runs-on: self-hosted
     steps:
       - name: Checkout code
@@ -25,9 +25,25 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install -r DemoProject/requirements.txt
 
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install -r DemoProject/requirements.txt
+
       - name: Run unit tests
         run: |
           cd DemoProject/tests
           python3 test_runner.py
 
+      - name: SonarQube Scan
+        env:
+          SONAR_TOKEN: sonar.allowPermissionManagementForProjectAdmins
+          SONAR_PROJECT_KEY: GithubActionsDemo
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+            -Dsonar.sources=. \
+            -Dsonar.language=python \
+            -Dsonar.host.url=http://sonarqube-service.default.svc.cluster.local \
+            -Dsonar.login=${SONAR_TOKEN}
 
