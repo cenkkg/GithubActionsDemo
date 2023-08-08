@@ -54,6 +54,7 @@ jobs:
 
       - name: Build and Tag Docker Image
         run: |
+          cd DemoProject
           docker build -t githubactionsdemo:latest .
           docker tag githubactionsdemo:latest ${{ secrets.ACR_LOGIN_SERVER }}/githubactionsdemo:latest
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/githubactionsdemo:latest
