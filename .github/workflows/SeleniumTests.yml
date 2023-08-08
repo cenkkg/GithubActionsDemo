@@ -25,14 +25,14 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install -r DemoProject/requirements.txt
 
-      - name: Set up Chrome
-        uses: browser-actions/setup-chrome@latest
-
       - name: Install dependencies
         run: |
           sudo apt-get install libnss3
           sudo apt-get install -y xvfb
           python -m pip install --upgrade pip
+
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@latest
 
       - name: Start application
         run: |
