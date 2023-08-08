@@ -1,4 +1,4 @@
-name: Push to ACR
+name: Selenium Tests
 on:
   push:
     branches: [ "main" ]

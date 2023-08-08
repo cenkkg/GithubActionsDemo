@@ -1,4 +1,4 @@
-name: SonarQube Test
+name: Push to ACR
 on:
   push:
     branches: [ "main" ]
