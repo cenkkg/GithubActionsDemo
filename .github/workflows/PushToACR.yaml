@@ -46,7 +46,7 @@ jobs:
           ./sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner \
             -Dsonar.projectKey=GithubActionsDemo \
             -Dsonar.host.url=http://sonarqube-service.actions-runner-system.svc.cluster.local:9000 \
-            -Dsonar.login=squ_a444fa29639c55342c20d17753ea528b2d606d58
+            -Dsonar.login=squ_eb08e22cdf8f00d7b253087107194272a8c33ac5
 
       - name: Login to Azure Container Registry
         run: |
