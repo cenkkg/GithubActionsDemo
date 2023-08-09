@@ -29,9 +29,6 @@ jobs:
       - name: Set up Chrome
         uses: browser-actions/setup-chrome@latest
 
-      - name: Display Chrome Version
-        run: ${{ steps.setup-chrome.outputs.executablePath }} --version
-
       - name: Start application
         run: |
           cd DemoProject
