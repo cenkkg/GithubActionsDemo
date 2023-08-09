@@ -27,6 +27,8 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt-get update
+          sudo apt-get install libatk1.0-0
           sudo apt-get install -y libnss3 
           sudo apt-get install -y xvfb
           python -m pip install --upgrade pip
