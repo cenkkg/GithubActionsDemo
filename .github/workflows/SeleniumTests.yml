@@ -22,19 +22,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python3 -m pip install --upgrade pip
           pip install -r DemoProject/requirements.txt
+          sudo apt-get install -y libpango1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0 libasound2
+          sudo apt-get install -y libcups2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libatk1.0-0 libatk-bridge2.0-0 libnss3 xvfb 
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libatk1.0-0
-          sudo apt-get install -y libnss3 
-          sudo apt-get install -y xvfb
-          python -m pip install --upgrade pip
-
-      - name: Set up Chrome
-        uses: browser-actions/setup-chrome@latest
+      - name: Set up Chrome v114
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 1135580
 
       - name: Start application
         run: |
@@ -48,6 +43,3 @@ jobs:
           xvfb-run python -m unittest selenium_check_city.py
         env:
           CHROME_BIN: ${{ steps.setup-chrome.outputs.executablePath }}
-
-
-
