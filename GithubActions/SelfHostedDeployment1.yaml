@@ -1,0 +1,11 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: example-runnerdeploy1
+spec:
+  replicas: 1
+  template:
+    spec:
+      repository: cenkkg/GithubActionsDemo
+      labels:
+        - "actions_runner_unit_tests"

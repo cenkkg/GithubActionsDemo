@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     name: Unit Tests
-    runs-on: self-hosted
+    runs-on: [self-hosted, actions_runner_unit_tests]
     steps:
       - name: Dummy GitHub Actions Test
         run: |
